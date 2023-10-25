@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class Particle2D : MonoBehaviour
 {
-    public Vector2 velocity;
+    public Vector3 velocity;
     public float damping = 0.999f;
-    public Vector2 acceleration;
-    public Vector2 gravity = new Vector2(0, -9.8f);
+    public Vector3 acceleration;
+    public Vector3 gravity = new Vector3(0f, -9.8f, 0f);
     public float inverseMass = 1.0f;
-    public Vector2 accumulatedForces { get; private set; }
+    public Vector3 accumulatedForces { get; private set; }
 
     public void FixedUpdate()
     {
@@ -16,17 +16,16 @@ public class Particle2D : MonoBehaviour
 
     public void DoFixedUpdate(float dt)
     {
-        acceleration = gravity + accumulatedForces * inverseMass;
         Integrator.Integrate(this, dt);
         ClearForces();
     }
 
     public void ClearForces()
     {
-        accumulatedForces = Vector2.zero;
+        accumulatedForces = Vector3.zero;
     }
 
-    public void AddForce(Vector2 force)
+    public void AddForce(Vector3 force)
     {
         accumulatedForces += force;
     }

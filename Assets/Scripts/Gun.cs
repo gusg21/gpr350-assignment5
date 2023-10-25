@@ -20,7 +20,7 @@ public class Gun : MonoBehaviour
     {
         get
         {
-            return transform.up;
+            return transform.up + Random.onUnitSphere * 0.25f;
         }
     }
 

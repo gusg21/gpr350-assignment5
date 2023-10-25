@@ -6,7 +6,7 @@ public static class Integrator
 {
     public static void Integrate(Particle2D particle, float dt)
     {
-        particle.transform.position += new Vector3(particle.velocity.x * dt, particle.velocity.y * dt);
+        particle.transform.position += particle.velocity * dt;
 
         particle.acceleration = particle.accumulatedForces * particle.inverseMass + particle.gravity;
 
